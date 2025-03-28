@@ -6,7 +6,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ExpenseForm from "./ExpenseForm";
 import ExpenseSummary from "./ExpenseSummary";
 import Analysis from "./Analysis";
-import { LogOut } from "lucide-react";
+import { LogOut, Save } from "lucide-react";
+import { saveExpenseData } from "@/utils/fileExport";
+import { toast } from "sonner";
 
 interface DashboardProps {
   userData: UserData;
@@ -20,6 +22,11 @@ const Dashboard = ({ userData, onLogout }: DashboardProps) => {
     setCurrentData({ ...currentData, expenses });
   };
   
+  const handleSaveData = () => {
+    const fileName = saveExpenseData(currentData);
+    toast.success(`Data saved successfully to ${fileName}!`);
+  };
+  
   return (
     <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
       <div className="bg-gradient-to-r from-blue-600 to-blue-800 p-6 text-white flex justify-between items-center">
@@ -27,9 +34,22 @@ const Dashboard = ({ userData, onLogout }: DashboardProps) => {
           <h2 className="text-2xl font-bold">{currentData.userType} Dashboard</h2>
           <p className="text-blue-100">{currentData.name} | {currentData.phone}</p>
         </div>
-        <Button variant="outline" onClick={onLogout} className="text-white border-white hover:bg-blue-700">
-          <LogOut className="h-4 w-4 mr-2" /> Logout
-        </Button>
+        <div className="flex space-x-2">
+          <Button 
+            variant="outline" 
+            onClick={handleSaveData} 
+            className="text-white border-white hover:bg-blue-700"
+          >
+            <Save className="h-4 w-4 mr-2" /> Save Data
+          </Button>
+          <Button 
+            variant="outline" 
+            onClick={onLogout} 
+            className="text-white border-white hover:bg-blue-700"
+          >
+            <LogOut className="h-4 w-4 mr-2" /> Logout
+          </Button>
+        </div>
       </div>
       
       <div className="p-6">
