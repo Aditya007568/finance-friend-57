@@ -27,7 +27,7 @@ const ExpenseForm = ({ userType, onSubmit, currentExpenses }: ExpenseFormProps) 
     "Rent", 
     "Groceries", 
     "Transport", 
-    "Utilities", 
+    "Medication", 
     "Dining Out", 
     "Entertainment", 
     "Savings", 
