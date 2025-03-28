@@ -41,7 +41,7 @@ const Index = () => {
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-blue-100">
       <div className="container mx-auto px-4 py-8">
         <h1 className="text-4xl font-bold text-center text-blue-800 mb-8">
-          Personal Finance Assistant
+          Personal Spend Tracker
         </h1>
 
         {!userType && !isRegistered ? (
